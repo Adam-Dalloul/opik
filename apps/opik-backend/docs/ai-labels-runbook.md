@@ -85,3 +85,5 @@ LIMIT 1 BY workspace_id, project_id, task, trace_id, key;
 | `ai_labels.render.compaction_level`, `.bytes` | How far traces had to be compacted to fit. |
 | `ai_labels.render.history_turns`, `.history_bytes` | The earlier thread turns left in each fitted history, and their size. |
 | `ai_labels.render.history_errors` | Failed reads of earlier turns. The chunk's render fails and is retried as `render_error`. |
+| `ai_labels.render.duration_seconds` by `outcome` | Wall time per chunk (ClickHouse reads + render): `ok`, or `one_at_a_time` after a chunk read failed. |
+| `ai_labels.render.cpu_seconds` | Java CPU spent rendering, excluding ClickHouse reads; its rate is cores. ClickHouse's side is in `system.query_log` (`log_comment` `ai-labels:render`). |
